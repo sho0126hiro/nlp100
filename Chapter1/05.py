@@ -23,10 +23,10 @@ def main():
     str="I am an NLPer"
     charbigram=[]
     list=str.split(' ')
-    char_ngram=ngram(str,3,"char")
-    print(char_ngram)
     word_ngram=ngram(list,3,"word")
     print(word_ngram)
+    char_ngram=ngram(str,3,"char")
+    print(char_ngram)
 
 if __name__  == '__main__':
     main()
