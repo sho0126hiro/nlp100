@@ -6,7 +6,7 @@
 """
 
 def ngram(target,n,type):
-    #(list,int,str)
+    #(str,int,str)
     result=[]
     list=target.split(' ')
     if type is "word":
