@@ -23,9 +23,9 @@ def main():
     str="I am an NLPer"
     charbigram=[]
     list=str.split(' ')
-    word_ngram=ngram(list,3,"word")
+    word_ngram=ngram(list,2,"word")
     print(word_ngram)
-    char_ngram=ngram(str,3,"char")
+    char_ngram=ngram(str,2,"char")
     print(char_ngram)
 
 if __name__  == '__main__':
