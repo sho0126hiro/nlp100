@@ -6,14 +6,15 @@
 """
 
 def ngram(target,n,type):
+    #(list,int,str)
     result=[]
+    list=target.split(' ')
     if type is "word":
         #単語:N-gram
-        for i in range(len(target)-n+1):
-            result.append(target[i:i+n])
+        for i in range(len(list)-n+1):
+            result.append(list[i:i+n])
     if type is "char":
         #文字:N-gram
-        list=target.split(' ')
         target=''.join(list)
         for i in range(len(target)-n+1):
             result.append(target[i:i+n])
@@ -21,9 +22,7 @@ def ngram(target,n,type):
 
 def main():
     str="I am an NLPer"
-    charbigram=[]
-    list=str.split(' ')
-    word_ngram=ngram(list,2,"word")
+    word_ngram=ngram(str,2,"word")
     print(word_ngram)
     char_ngram=ngram(str,2,"char")
     print(char_ngram)
