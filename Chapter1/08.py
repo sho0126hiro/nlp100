@@ -20,7 +20,7 @@ def Cipher(msg):
     return msg
     
 def main():
-    message  = u"Hello world"
+    message  = u"I couldn't believe that I could actually understand what I was reading : the phenomenal power of the human mind ."
     message2 = Cipher(message)
     print(message2)
     message3 = Cipher(message2)
