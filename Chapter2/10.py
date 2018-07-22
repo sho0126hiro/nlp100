@@ -5,7 +5,11 @@
 """
 
 def main():
-
+    data=open("hightemp.txt","r")
+    count=0
+    for i in data:
+        count+=1
+    print(count)
 
 if __name__  == '__main__':
     main()
