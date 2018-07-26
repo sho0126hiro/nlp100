@@ -12,7 +12,7 @@ def extract_text(text):
     with gzip.open("jawiki-country.json.gz","rt") as f:
         for line in f:
             obj = json.loads(line)
-            #type(obj) : class 'dict
+            #type(obj) : class 'dict'
             if obj["title"] == text :
                 return obj["text"]
 def main():
