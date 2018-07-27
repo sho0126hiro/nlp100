@@ -12,14 +12,13 @@ def extract_text(text):
     with gzip.open("jawiki-country.json.gz","rt") as f:
         for line in f:
             obj = json.loads(line)
-            #type(obj) : class 'dict
+            #type(obj) : class 'dict'
             if obj["title"] == text :
                 return obj["text"]
 def main():
     UK_data=extract_text('イギリス')
     data=UK_data.split('\n')
     for line in range(len(data)):
-        #category=re.search(r"Category:(?P<category>.+?)(\||])",data[line])
         category=re.match(r"\[\[Category:(?P<category>.+?)(\|.*|\]\])",data[line])
         #.+? : 1文字以上の最短マッチ >> category groupに代入
         if category :
