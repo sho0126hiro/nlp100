@@ -1,14 +1,18 @@
 # -*- coding: utf-8 -*-
 """
-26. 強調マークアップの除去
-25の処理時に，テンプレートの値からMediaWikiの
-強調マークアップ（弱い強調，強調，強い強調のすべて）を除去してテキストに変換せよ
+27. 内部リンクの除去
+26の処理に加えて，テンプレートの値からMediaWikiの
+内部リンクマークアップを除去し，テキストに変換せよ
 （参考: マークアップ早見表）．
 マークアップ早見表：https://ja.wikipedia.org/wiki/Help:%E6%97%A9%E8%A6%8B%E8%A1%A8
 
-""text""     : 弱い強調
-”””で囲まれる   : 強調
-""""text"""" : 強い強調
+[[記事名]]	
+[[記事名|表示文字]]	 
+[[記事名#節名|表示文字]]
+|がある場合、表示文字を取得
+#memo
+    問題の意図が、内部リンク自体を削除するか、内部リンクマークアップ([[ | ]])
+    を削除するか不明だったため、後者のプログラムを作製している。
 
 """
 import gzip
@@ -38,6 +42,10 @@ def main():
     for i in range(len(info_list)): 
         #マークアップ除去
         info_list[i]=re.sub(r"\'{2,4}","",info_list[i])
+        info_list[i]=re.sub(r"\[\[(.+?)\]\]",lambda m : m.group(1).split('|')[-1],info_list[i])
+        #上のようにすれば1行で書ける
+        #m.group(1) : (.+?)を取得し、|で分割後、[-1]で一番最後の要素（表示文字）を取得
+        info_list[i]=re.sub(r"\|"," ",info_list[i])
         m2=re.split(r"\s+=\s+",info_list[i])
         #re.split : "\s+=\s+"で区切ってm2リストに格納する
         if len(m2) == 2 :
@@ -55,34 +63,33 @@ if __name__  == '__main__':
 [('略名', 'イギリス'),
  ('日本語国名', 'グレートブリテン及び北アイルランド連合王国'),
  ('公式国名',
-  '{{lang|en|United Kingdom of Great Britain and Northern '
+  '{{lang en United Kingdom of Great Britain and Northern '
   'Ireland}}<ref>英語以外での正式国名:<br/>\n'
-  '*{{lang|gd|An Rìoghachd Aonaichte na Breatainn Mhòr agus Eirinn mu '
-  'Thuath}}（[[スコットランド・ゲール語]]）<br/>\n'
-  '*{{lang|cy|Teyrnas Gyfunol Prydain Fawr a Gogledd '
-  'Iwerddon}}（[[ウェールズ語]]）<br/>\n'
-  '*{{lang|ga|Ríocht Aontaithe na Breataine Móire agus Tuaisceart na '
-  'hÉireann}}（[[アイルランド語]]）<br/>\n'
-  '*{{lang|kw|An Rywvaneth Unys a Vreten Veur hag Iwerdhon '
-  'Glédh}}（[[コーンウォール語]]）<br/>\n'
-  '*{{lang|sco|Unitit Kinrick o Great Breetain an Northren '
-  'Ireland}}（[[スコットランド語]]）<br/>\n'
-  '**{{lang|sco|Claught Kängrick o Docht Brätain an Norlin '
-  'Airlann}}、{{lang|sco|Unitet Kängdom o Great Brittain an Norlin '
+  '*{{lang gd An Rìoghachd Aonaichte na Breatainn Mhòr agus Eirinn mu '
+  'Thuath}}（スコットランド・ゲール語）<br/>\n'
+  '*{{lang cy Teyrnas Gyfunol Prydain Fawr a Gogledd Iwerddon}}（ウェールズ語）<br/>\n'
+  '*{{lang ga Ríocht Aontaithe na Breataine Móire agus Tuaisceart na '
+  'hÉireann}}（アイルランド語）<br/>\n'
+  '*{{lang kw An Rywvaneth Unys a Vreten Veur hag Iwerdhon '
+  'Glédh}}（コーンウォール語）<br/>\n'
+  '*{{lang sco Unitit Kinrick o Great Breetain an Northren '
+  'Ireland}}（スコットランド語）<br/>\n'
+  '**{{lang sco Claught Kängrick o Docht Brätain an Norlin Airlann}}、{{lang '
+  'sco Unitet Kängdom o Great Brittain an Norlin '
   'Airlann}}（アルスター・スコットランド語）</ref>'),
  ('国旗画像', 'Flag of the United Kingdom.svg'),
- ('国章画像', '[[ファイル:Royal Coat of Arms of the United Kingdom.svg|85px|イギリスの国章]]'),
- ('国章リンク', '（[[イギリスの国章|国章]]）'),
- ('標語', '{{lang|fr|Dieu et mon droit}}<br/>（[[フランス語]]:神と私の権利）'),
- ('国歌', '[[女王陛下万歳|神よ女王陛下を守り給え]]'),
+ ('国章画像', 'ファイル:Royal Coat of Arms of the United Kingdom.svg 85px イギリスの国章'),
+ ('国章リンク', '（イギリスの国章 国章）'),
+ ('標語', '{{lang fr Dieu et mon droit}}<br/>（フランス語:神と私の権利）'),
+ ('国歌', '女王陛下万歳 神よ女王陛下を守り給え'),
  ('位置画像', 'Location_UK_EU_Europe_001.svg'),
- ('公用語', '[[英語]]（事実上）'),
- ('首都', '[[ロンドン]]'),
+ ('公用語', '英語（事実上）'),
+ ('首都', 'ロンドン'),
  ('最大都市', 'ロンドン'),
- ('元首等肩書', '[[イギリスの君主|女王]]'),
- ('元首等氏名', '[[エリザベス2世]]'),
- ('首相等肩書', '[[イギリスの首相|首相]]'),
- ('首相等氏名', '[[デーヴィッド・キャメロン]]'),
+ ('元首等肩書', 'イギリスの君主 女王'),
+ ('元首等氏名', 'エリザベス2世'),
+ ('首相等肩書', 'イギリスの首相 首相'),
+ ('首相等氏名', 'デーヴィッド・キャメロン'),
  ('面積順位', '76'),
  ('面積大きさ', '1 E11'),
  ('面積値', '244,820'),
@@ -109,20 +116,20 @@ if __name__  == '__main__':
  ('GDP値', '2兆3162億<ref name="imf-statistics-gdp" />'),
  ('GDP/人', '36,727<ref name="imf-statistics-gdp" />'),
  ('建国形態', '建国'),
- ('確立形態1', '[[イングランド王国]]／[[スコットランド王国]]<br />（両国とも[[連合法 (1707年)|1707年連合法]]まで）'),
- ('確立年月日1', '[[927年]]／[[843年]]'),
- ('確立形態2', '[[グレートブリテン王国]]建国<br />（[[連合法 (1707年)|1707年連合法]]）'),
- ('確立年月日2', '[[1707年]]'),
- ('確立形態3', '[[グレートブリテン及びアイルランド連合王国]]建国<br />（[[連合法 (1800年)|1800年連合法]]）'),
- ('確立年月日3', '[[1801年]]'),
+ ('確立形態1', 'イングランド王国／スコットランド王国<br />（両国とも連合法 (1707年) 1707年連合法まで）'),
+ ('確立年月日1', '927年／843年'),
+ ('確立形態2', 'グレートブリテン王国建国<br />（連合法 (1707年) 1707年連合法）'),
+ ('確立年月日2', '1707年'),
+ ('確立形態3', 'グレートブリテン及びアイルランド連合王国建国<br />（連合法 (1800年) 1800年連合法）'),
+ ('確立年月日3', '1801年'),
  ('確立形態4', '現在の国号「グレートブリテン及び北アイルランド連合王国」に変更'),
- ('確立年月日4', '[[1927年]]'),
- ('通貨', '[[スターリング・ポンド|UKポンド]] (&pound;)'),
+ ('確立年月日4', '1927年'),
+ ('通貨', 'スターリング・ポンド UKポンド (&pound;)'),
  ('通貨コード', 'GBP'),
  ('時間帯', '±0'),
  ('夏時間', '+1'),
  ('ISO 3166-1', 'GB / GBR'),
- ('ccTLD', '[[.uk]] / [[.gb]]<ref>使用は.ukに比べ圧倒的少数。</ref>'),
+ ('ccTLD', '.uk / .gb<ref>使用は.ukに比べ圧倒的少数。</ref>'),
  ('国際電話番号', '44'),
  ('注記', '<references />')]
 """
