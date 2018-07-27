@@ -1,21 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-28. MediaWikiマークアップの除去
-27の処理に加えて，テンプレートの値からMediaWikiマークアップを可能な限り除去し，
-国の基本情報を整形せよ．
-マークアップ早見表：https://ja.wikipedia.org/wiki/Help:%E6%97%A9%E8%A6%8B%E8%A1%A8
+29. 国旗画像のURLを取得する
+テンプレートの内容を利用し，国旗画像のURLを取得せよ．（ヒント: MediaWiki APIのimageinfoを呼び出して，ファイル参照をURLに変換すればよい）
 
-削除対象：
-    ==  ==            見出し（参考：23.py)
-    {{   }}           スタブ
-    [[   ]]           内部リンク 区切り：'|' 
-    [     ]           外部リンク 区切り：' '
-    #REDIRECT[[ ]]    リダイレクト
-    <!-- text -->     コメントアウト
-    *,**,***          箇条書き       
-    ;,:               定義の箇条書き
-    ----              水平線
-    ~~~~              署名
+MediaWiki API:https://www.mediawiki.org/wiki/API:Main_page/ja
 
 """
 import gzip
