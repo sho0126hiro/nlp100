@@ -89,5 +89,5 @@ if __name__  == '__main__':
     main()
 
 """
-GIVE UP
+ *** GIVE UP ***
 """
