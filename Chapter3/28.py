@@ -35,6 +35,8 @@ def extract_text(text):
 def delete_markup(text):
     #見出し == == === === ==== ====
     text=re.sub(r"=+\s(.+?)\s=+",lambda m : m.group(1),text)
+    #スタブ {{ }}
+    text=re.sub(r"{{(.+?)}}",lambda m : m.group(1),text)
     #強調 '' '' ''' ''' '''' ''''
     text=re.sub(r"\'{2,}","",text)
     #内部リンク [[]]
@@ -89,24 +91,23 @@ if __name__  == '__main__':
 [('略名', 'イギリス'),
  ('日本語国名', 'グレートブリテン及び北アイルランド連合王国'),
  ('公式国名',
-  '{{lang|en|United Kingdom of Great Britain and Northern '
-  'Ireland}}<ref>英語以外での正式国名:<br/>\n'
-  '*{{lang|gd|An Rìoghachd Aonaichte na Breatainn Mhòr agus Eirinn mu '
-  'Thuath}}（スコットランド・ゲール語）<br/>\n'
-  '*{{lang|cy|Teyrnas Gyfunol Prydain Fawr a Gogledd Iwerddon}}（ウェールズ語）<br/>\n'
-  '*{{lang|ga|Ríocht Aontaithe na Breataine Móire agus Tuaisceart na '
-  'hÉireann}}（アイルランド語）<br/>\n'
-  '*{{lang|kw|An Rywvaneth Unys a Vreten Veur hag Iwerdhon '
-  'Glédh}}（コーンウォール語）<br/>\n'
-  '*{{lang|sco|Unitit Kinrick o Great Breetain an Northren '
-  'Ireland}}（スコットランド語）<br/>\n'
-  '**{{lang|sco|Claught Kängrick o Docht Brätain an Norlin '
-  'Airlann}}、{{lang|sco|Unitet Kängdom o Great Brittain an Norlin '
-  'Airlann}}（アルスター・スコットランド語）</ref>'),
+  'lang|en|United Kingdom of Great Britain and Northern '
+  'Ireland<ref>英語以外での正式国名:<br/>\n'
+  '*lang|gd|An Rìoghachd Aonaichte na Breatainn Mhòr agus Eirinn mu '
+  'Thuath（スコットランド・ゲール語）<br/>\n'
+  '*lang|cy|Teyrnas Gyfunol Prydain Fawr a Gogledd Iwerddon（ウェールズ語）<br/>\n'
+  '*lang|ga|Ríocht Aontaithe na Breataine Móire agus Tuaisceart na '
+  'hÉireann（アイルランド語）<br/>\n'
+  '*lang|kw|An Rywvaneth Unys a Vreten Veur hag Iwerdhon Glédh（コーンウォール語）<br/>\n'
+  '*lang|sco|Unitit Kinrick o Great Breetain an Northren '
+  'Ireland（スコットランド語）<br/>\n'
+  '**lang|sco|Claught Kängrick o Docht Brätain an Norlin '
+  'Airlann、lang|sco|Unitet Kängdom o Great Brittain an Norlin '
+  'Airlann（アルスター・スコットランド語）</ref>'),
  ('国旗画像', 'Flag of the United Kingdom.svg'),
  ('国章画像', 'イギリスの国章'),
  ('国章リンク', '（国章）'),
- ('標語', '{{lang|fr|Dieu et mon droit}}<br/>（フランス語:神と私の権利）'),
+ ('標語', 'lang|fr|Dieu et mon droit<br/>（フランス語:神と私の権利）'),
  ('国歌', '神よ女王陛下を守り給え'),
  ('位置画像', 'Location_UK_EU_Europe_001.svg'),
  ('公用語', '英語（事実上）'),
