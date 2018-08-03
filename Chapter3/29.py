@@ -1,14 +1,25 @@
 # -*- coding: utf-8 -*-
 """
+::未完成
 29. 国旗画像のURLを取得する
 テンプレートの内容を利用し，国旗画像のURLを取得せよ．
 （ヒント: MediaWiki APIのimageinfoを呼び出して，ファイル参照をURLに変換すればよい）
 
 MediaWiki API:https://www.mediawiki.org/wiki/API:Main_page/ja
+<<<<<<< HEAD
 MediaWiki API　使い方：https://qiita.com/yubessy/items/16d2a074be84ee67c01f
 
 """
 import gzip,json,re,pprint
+=======
+API:Clien code/ja : https://www.mediawiki.org/wiki/API:Client_code/ja
+MediaWiki API : https://www.mediawiki.org/w/api.php
+Request Quicstart : http://requests-docs-ja.readthedocs.io/en/latest/user/quickstart/#url
+How to use Mwdiawiki api : https://qiita.com/yubessy/items/16d2a074be84ee67c01f
+"""
+import gzip,json,re,pprint
+import requests
+>>>>>>> 8120a01dd4fb17bd83950d1e44be2131f41d4e5f
 
 def extract_text(text):
     #gzip file open >> json
@@ -22,6 +33,8 @@ def extract_text(text):
 def delete_markup(text):
     #見出し == == === === ==== ====
     text=re.sub(r"=+\s(.+?)\s=+",lambda m : m.group(1),text)
+        #スタブ {{ }}
+    text=re.sub(r"{{(.+?)}}",lambda m : m.group(1),text)
     #強調 '' '' ''' ''' '''' ''''
     text=re.sub(r"\'{2,}","",text)
     #内部リンク [[]]
@@ -65,13 +78,33 @@ def main():
     
     #出現順にソートして表示
     info=sorted(info_dict.items(),key=lambda m2 : sortlist.index(m2[0]))
+<<<<<<< HEAD
     #info_dict.items() : 辞書のタプル型リストを取得
     # pprint.pprint(info)
     
+=======
+    #info_dict.items() ; 辞書のタプル型リストを取得
+    #pprint.pprint(info)
+    #http://ja.wikipedia.org/w/api.php?パラメータ1=値1&パラメータ2=値2&...&パラメータn=値n
+>>>>>>> 8120a01dd4fb17bd83950d1e44be2131f41d4e5f
 
+    endpoint = "https://commons.wikimedia.org/w/api.php"
+    payload = {"actions": "query",
+               "title"  : "Image:{}".format(info_dict[u"国旗画像"]),
+               "prop"   : "imageinfo",
+               "format" : "json",
+               "iiprop" : "endpoint"}
+    r = requests.get(endpoint,params=payload)
+    flagurl=json.loads(r.text)
+    print(flagurl)
+    
 if __name__  == '__main__':
     main()
 
 """
+<<<<<<< HEAD
 
+=======
+ *** GIVE UP ***
+>>>>>>> 8120a01dd4fb17bd83950d1e44be2131f41d4e5f
 """
