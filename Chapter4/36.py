@@ -54,15 +54,11 @@ def main():
     for line in data:
         if line['pos'] != '記号':
             words.append(line['surface'])
-    words_frequency=collections.Counter(words)
-    #print(sort_data)
-    #sort_data.sort(key=lambda x : x[1])
-    #sort_data.reverse()
-    """
+    frequency=collections.Counter(words)
+    sort_data=frequency.most_common()
     with open("36_word_frequency.txt",mode='w') as f:
         for i in range(len(sort_data)) :
-            f.write(sort_data[i][0] + "\t" + str(sort_data[i][1]))
+            f.write(str(sort_data[i][0]) + "\t" + str(sort_data[i][1]))
             f.write("\n")
-    """
 if __name__  == '__main__':
     main()
