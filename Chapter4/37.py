@@ -24,8 +24,10 @@ def main():
         data[i]=data[i].replace("\n","")
         word.append(data[i].split("\t")[0])
         frequency.append(data[i].split("\t")[1])
-    print(word)
-    print(frequency)
+    # print(word)
+    # ['の', 'て', 'は', 'に', 'を', 'と', 'が', 'た', 'で', 'も']
+    # print(frequency)
+    # ['9108', '6703', '6385', '6190', '6068', '5483', '5260', '3916', '3780', '2434']
     frequency_int=[]
     #str >> int
     for num in frequency:
@@ -34,12 +36,15 @@ def main():
     left=word
     right=frequency_int
     plt.bar(left,right)
+    plt.title("頻度上位10位")
+    plt.xlabel("出現頻度が高い10語")
+    plt.ylabel("出現頻度")
     plt.savefig( '37.png' )
-    print(matplotlib.matplotlib_fname())
+    # print(matplotlib.matplotlib_fname())
     # /home/sho0126hiro/.local/lib/python3.5/site-packages/matplotlib/mpl-data/matplotlibrc
-    print(matplotlib.get_configdir())
+    # print(matplotlib.get_configdir())
     # /home/sho0126hiro/.config/matplotlib
-    print(matplotlib.rcParams['font.family'])
+    # print(matplotlib.rcParams['font.family'])
 
 
 if __name__  == '__main__':
