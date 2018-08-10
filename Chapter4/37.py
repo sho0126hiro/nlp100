@@ -23,23 +23,19 @@ def main():
     for i in range(10):
         data[i]=data[i].replace("\n","")
         word.append(data[i].split("\t")[0])
-        frequency.append(data[i].split("\t")[1])
+        frequency.append(int(data[i].split("\t")[1]))
     # print(word)
     # ['の', 'て', 'は', 'に', 'を', 'と', 'が', 'た', 'で', 'も']
     # print(frequency)
     # ['9108', '6703', '6385', '6190', '6068', '5483', '5260', '3916', '3780', '2434']
-    frequency_int=[]
-    #str >> int
-    for num in frequency:
-        frequency_int.append(int(num))
     fp = FontProperties(fname=r'/Library/Fonts/ヒラギノ丸ゴ ProN W4.ttc', size=14)
     left=word
-    right=frequency_int
+    right=frequency
     plt.bar(left,right)
     plt.title("頻度上位10位")
     plt.xlabel("出現頻度が高い10語")
     plt.ylabel("出現頻度")
-    plt.savefig( '37.png' )
+    plt.savefig( '37-2.png' )
     # print(matplotlib.matplotlib_fname())
     # /home/sho0126hiro/.local/lib/python3.5/site-packages/matplotlib/mpl-data/matplotlibrc
     # print(matplotlib.get_configdir())
