@@ -26,9 +26,9 @@ def main():
     # ['の', 'て', 'は', 'に', 'を', 'と', 'が', 'た', 'で', 'も']
     # print(frequency)
     # ['9108', '6703', '6385', '6190', '6068', '5483', '5260', '3916', '3780', '2434']
-    left=word
-    right=frequency
-    plt.bar(left,right)
+    X=word
+    Y=frequency
+    plt.bar(X,Y)
     plt.title("頻度上位10位")
     plt.xlabel("出現頻度が高い10語")
     plt.ylabel("出現頻度")
