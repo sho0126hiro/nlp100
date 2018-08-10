@@ -19,12 +19,12 @@ def Morphological_Analysis():
     mt = MeCab.Tagger("-Ochasen")
     r = mt.parse(text)
     data=r.split("\n")
-    with open("neko.txt.mecab",mode='w') as c:
+    with open("30_neko.txt.mecab",mode='w') as c:
         for i in range(len(data)):
             c.write("".join(data[i]))
             c.write("\n")
 def init_dict():
-    with open("neko.txt.mecab",mode='r') as f:
+    with open("30_neko.txt.mecab",mode='r') as f:
         result=f.readlines()
     data=[]
     neko_dict=[]
@@ -50,7 +50,7 @@ def init_dict():
     #print(neko_dict)
     # for line in neko_dict:
         # print(str(line))
-    with open("neko_dict.txt",mode='w') as c:
+    with open("30_neko_dict.txt",mode='w') as c:
         for line in neko_dict:
             c.write(str(line))
             c.write("\n")

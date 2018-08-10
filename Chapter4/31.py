@@ -52,7 +52,7 @@ def main():
     for line in data:
         if line['pos'] == '動詞':
             varbs.append(line['surface'])
-    with open("varb_surface.txt",mode='w') as f:
+    with open("31_varb_surface.txt",mode='w') as f:
         for line in varbs :
             f.write(line)
             f.write("\n")
