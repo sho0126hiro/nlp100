@@ -6,7 +6,7 @@
 棒グラフの出力例 : https://pythondatascience.plavox.info/matplotlib/%E6%A3%92%E3%82%B0%E3%83%A9%E3%83%95
 Hou to use 'numpy' : https://qiita.com/jyori112/items/a15658d1dd17c421e1e2
 numpyとは : https://www.sejuku.net/blog/42550
-Ububtu上のMatplotlibで日本語出力できない問題の解決方法 : fc-list | grep Takao
+Ububtu上のMatplotlibで日本語出力できない問題の解決方法 : https://qiita.com/gymnstcs/items/50432a12fb9139b316bc
 """
 import numpy as np
 import matplotlib
@@ -29,7 +29,7 @@ def main():
     X=word
     Y=frequency
     plt.bar(X,Y)
-    plt.title("頻度上位10位")
+    plt.title("37 頻度上位10位")
     plt.xlabel("出現頻度が高い10語")
     plt.ylabel("出現頻度")
     plt.savefig( '37.png' )
