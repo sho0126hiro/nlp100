@@ -12,8 +12,6 @@ import numpy as np
 import matplotlib
 matplotlib.use('Agg') # error除去のため
 import matplotlib.pylab as plt
-from matplotlib.font_manager import FontProperties
-# グラフで使うフォント情報(デフォルトのままでは日本語が表示できない)
 
 def main():
     with open("36_word_frequency.txt",mode='r') as f:
